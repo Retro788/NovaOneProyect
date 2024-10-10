@@ -4,10 +4,199 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simulador Solar</title>
+    <title>Solar System</title>
+    <style>
+      /* Esconder todo el contenido mientras la página está cargando */
+      body {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s ease-in;
+      }
+
+      body.loaded {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* Base styles for the overlays */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8); /* Fully opaque background */
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        backdrop-filter: blur(8px); /* Apply blur to the background */
+      }
+
+      .alert-box {
+        background-color: rgba(0, 0, 0, 0.7); /* Glassy black background */
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 600px; /* Increased maximum width */
+        width: 90%; /* Dynamic adjustment for smaller screens */
+        max-height: 80%; /* Limit maximum height */
+        overflow-y: auto; /* Enable scrolling if the content exceeds the height */
+        font-size: 16px; /* Increased text size */
+        line-height: 1.5; /* Better line spacing for readability */
+        color: white; /* Ensure text is visible over the glassy background */
+      }
+
+      .alert-box button {
+        margin: 10px;
+        padding: 10px 20px;
+        background-color: #6a0dad; /* Dense purple for buttons */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .alert-box button:hover {
+        background-color: #590a9e; /* Slightly darker purple on hover */
+      }
+
+      /* Styles for links */
+      a {
+        color: #6a0dad; /* Fixed purple for all link states */
+        text-decoration: underline;
+      }
+
+      a:visited {
+        color: #6a0dad; /* Ensure visited links also remain purple */
+      }
+
+      a:active {
+        color: #6a0dad; /* Ensure active links remain purple */
+      }
+
+      a:hover {
+        color: #ff9800; /* Change to orange on hover */
+      }
+
+      #root {
+        display: none; /* Hide the main content until the process is finished */
+      }
+
+      /* Title styles */
+      #title {
+        position: relative; /* Not fixed, so it can move down */
+        margin-top: 50px; /* Space from the top */
+        background-color: rgba(0, 0, 0, 0.9); /* Dark background for the title */
+        color: white;
+        text-align: center;
+        padding: 15px;
+        font-size: 18px;
+        z-index: 1001; /* Above the overlays */
+        font-weight: bold; /* Make the text bold */
+      }
+
+      /* Push the content below the title */
+      .content {
+        padding-top: 70px; /* Adjust padding so content does not overlap the title */
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Title moved below with Bold text -->
+    <div id="title">
+      This project is part of the Nova One Team, conceptualized, designed, and created by Fernando San Gabriel (RetroTheDev)
+    </div>
+
+    <div id="root" class="content">
+      <!-- The main project content will be here, like the Three.js canvas -->
+      <script type="module" src="/src/main.tsx"></script>
+    </div>
+
+    <!-- Alert window 1 -->
+    <div id="overlay1" class="overlay">
+      <div class="alert-box">
+        <p>
+          To proceed with accessing the official documentation of this project, we kindly ask you to open the following document, which provides an exhaustive overview of every technical and functional aspect involved. This documentation is a fundamental part of the evaluation process for NASA's Space Apps hackathon, offering the necessary information for a deep understanding of the goals, objectives, and expected outcomes.<br><br>
+          <a href="https://drive.google.com/file/d/18i4fjnBCn1J58Kjr4qgiMhJCUYumjhWs/view?usp=sharing" target="_blank">Open official document</a>
+        </p>
+        <button onclick="nextOverlay(1)">Continue</button>
+      </div>
+    </div>
+
+    <!-- Alert window 2 -->
+    <div id="overlay2" class="overlay">
+      <div class="alert-box">
+        <p>
+          This project is part of the **NASA Space Apps** initiative, focusing on the development of a **Detection Model** through complex neural networks. The model is trained bifurcatively, utilizing an advanced detection pattern and mobility prediction via geometric topologies. This seismic detection system is integrated into a solar simulator, which allows for more intuitive and accessible visualization and comprehension for the end user, leveraging cutting-edge artificial intelligence and astronomical simulations.<br><br>
+          You can find more information and the project repository at the following link:<br>
+          <a href="https://github.com/Retro788/Modelo-Deteccion-Prediccion" target="_blank">Detection Model - GitHub Repository</a>
+        </p>
+        <button onclick="nextOverlay(2)">Continue</button>
+        <button onclick="previousOverlay(1)">Back</button>
+      </div>
+    </div>
+
+    <!-- Alert window 3 -->
+    <div id="overlay3" class="overlay">
+      <div class="alert-box">
+        <p>
+          Here you can watch a 30-second proof-of-concept video demonstrating the early stages of our prediction model and its integration with the solar simulator.<br><br>
+          <a href="https://drive.google.com/file/d/1PTCoOyhjCcO_O-JcMlGX2EfFe-BONdwQ/view" target="_blank">Watch test video</a>
+        </p>
+        <button onclick="nextOverlay(3)">Finish</button>
+        <button onclick="previousOverlay(2)">Back</button>
+      </div>
+    </div>
+
+    <!-- New final card for the solar simulator -->
+    <div id="overlay4" class="overlay">
+      <div class="alert-box">
+        <p>
+          This project was developed and conceptualized by Engineer Fernando San Gabriel (RetroTheDev), leader of the Nova One team. To learn more about his work and contributions, please visit the following links:<br><br>
+          <a href="https://github.com/Retro788" target="_blank">GitHub Profile</a><br>
+          <a href="https://www.spaceappschallenge.org/nasa-space-apps-2024/find-a-team/nova-one/" target="_blank">NASA Space Apps Team Nova One</a><br><br>
+          He is also the Second IBM Ambassador in Mexico, Education Leader at GitHub, and Google Developer Lead.
+        </p>
+        <button onclick="finalize()">Continue to Solar Simulator</button>
+        <button onclick="previousOverlay(3)">Back</button>
+      </div>
+    </div>
+
+    <script>
+      // Show the first window when the page loads
+      document.getElementById("overlay1").style.display = "flex";
+
+      // Function to show the next overlay
+      function nextOverlay(current) {
+        document.getElementById("overlay" + current).style.display = "none";
+        document.getElementById("overlay" + (current + 1)).style.display = "flex";
+      }
+
+      // Function to go back to the previous overlay
+      function previousOverlay(current) {
+        if (current > 1) {  // Check if it's not the first overlay
+          document.getElementById("overlay" + current).style.display = "none";
+          document.getElementById("overlay" + (current - 1)).style.display = "flex";
+        }
+      }
+
+      // Function to finalize and close the overlays, showing the main content
+      function finalize() {
+        document.getElementById("overlay4").style.display = "none";
+        document.getElementById("root").style.display = "block"; // Show the main content
+        document.getElementById("title").style.display = "none"; // Hide the title
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+      }
+
+      // Prevent the background from loading or interacting until overlays are done
+      document.body.style.overflow = 'hidden'; // Disable scrolling
+
+      // When the page is fully loaded, show everything
+      window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+        document.getElementById("overlay1").style.display = "flex";
+      });
+    </script>
   </body>
 </html>
