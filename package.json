@@ -10,15 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@mui/material": "^6.1.2",
     "@react-spring/web": "^9.7.3",
     "@react-three/drei": "^9.97.0",
     "@react-three/fiber": "^8.15.16",
     "@react-three/postprocessing": "^2.16.0",
-    "clsx": "^2.1.1",
-    "framer-motion": "^11.11.1",
     "glslify": "^7.1.1",
     "leva": "^0.9.35",
     "lodash": "^4.17.21",
@@ -29,10 +24,10 @@
     "react-dom": "^18.2.0",
     "react-use-measure": "^2.1.1",
     "resolve-lygia": "^1.0.4",
-    "tailwind-merge": "^2.5.3",
     "three": "^0.161.0",
     "three-stdlib": "^2.29.4",
     "vite-plugin-glsl": "^1.2.1",
+    "yarn": "^1.22.22",
     "zustand": "^4.5.0"
   },
   "devDependencies": {
